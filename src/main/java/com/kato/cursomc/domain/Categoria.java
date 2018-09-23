@@ -9,7 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import com.kato.cursomc.domain.Produto;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Categoria implements Serializable {
@@ -21,6 +22,8 @@ public class Categoria implements Serializable {
 	private Integer id;
 	private String nome;
 	
+	//@JsonManagedReference - é para definir que queremos a categoria e seus produtos associados, e não entrar em loop
+	@JsonManagedReference
 	@ManyToMany(mappedBy= "categorias")
 	
 	private List<Produto> produtos = new ArrayList<>();
